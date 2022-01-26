@@ -45,19 +45,26 @@ class FilmTestCase(TestCase):
         film.save()
         self.assertEqual(film.imdb_rating, 3)
 
-from rest_framework.test import APIRequestFactory, APITestCase
 
-# class FilmTestClass(APITestCase):
-#     def setUp(self):
-#         factory = APIRequestFactory()
-#         context = {
-#             "tytul": "Matrix",
-#             "opis": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence",
-#             "po_premierze": True,
-#             "rok": 1999
-#         }
-#         request = factory.post('/api/filmy/', context)
-#         print(request)
 
-from pytest_django.asserts import assertTemplateUsed
+from .serializers import FilmSerializer
+class FilmSerializerTest(TestCase):
+    def setUp(self):
+        self.data = {
+                    "tytul" : "TestFilm",
+                    "opis": "TestTestTestTest",
+                    "rok": 2115
+                }
+        self.film = Film.objects.create(**self.data)
+        self.serializer = FilmSerializer(instance=self.film)
+
+    # def test(self):
+    #     data = self.serializer.data
+    #
+    #     self.assertEqual(set(data.keys()), set(['id','tytul', 'opis']), msg=f"{set(data.keys())}")
+
+    def test_tytul(self):
+        data = self.serializer.data
+        self.assertEqual(data['tytul'], self.data['tytul'])
+
 

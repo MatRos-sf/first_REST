@@ -32,5 +32,4 @@ router.register(r'aktorzy', views.AktorViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-
 ]

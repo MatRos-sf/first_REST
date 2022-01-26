@@ -3,10 +3,10 @@ from django.db import models
 class ExtraInfo(models.Model):
     RODZAJE = {
         (0, 'Nieznane'),
-        (0, 'Horror'),
-        (0, 'Sci-fi'),
-        (0, 'Drama'),
-        (0, 'Komedia')
+        (1, 'Horror'),
+        (2, 'Sci-fi'),
+        (3, 'Drama'),
+        (4, 'Komedia')
     }
     czas_trwania = models.IntegerField()
     rodzaj = models.IntegerField(choices=RODZAJE, default=0)
